@@ -42,7 +42,7 @@ function getHeatMapFromHtml(html) {
   return d;
 }
 
-export async function getHeatMap(url) {
-  const html = await getHtml(url);
+export async function getHeatMap(url, options) {
+  const html = await getHtml(url, options);
   return getHeatMapFromHtml(html);
 }
