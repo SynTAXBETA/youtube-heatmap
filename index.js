@@ -18,14 +18,17 @@ async function getHtml(url, options) {
 
 function getHeatMapFromHtml(html) {
   const $ = load(html);
-  const d = $(cssHeatMapPath).map(function () {
-    return $(this).attr("d");
-  });
+  const d = $(cssHeatMapPath)
+    .map(function () {
+      return $(this).attr("d");
+    })
+    .toArray()
+    .filter((path) => path && path.trim());
 
   if (!d.length)
     throw new Error(`Tag '${cssHeatMapPath}' not found or is empty.`);
 
-  return d.toArray();
+  return d;
 }
 
 export async function getHeatMap(url) {
